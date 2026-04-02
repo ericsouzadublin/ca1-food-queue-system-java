@@ -17,8 +17,14 @@ public class Main {
             System.out.println("0. Exit");
             System.out.print("Enter your choice: ");
 
-            choice = sc.nextInt();
-            sc.nextLine();
+            if (sc.hasNextInt()) {
+                choice = sc.nextInt();
+                sc.nextLine();
+            } else {
+                System.out.println("Invalid input. Please enter a number.");
+                sc.nextLine();
+                choice = -1;
+            }
 
             switch (choice) {
                 case 1:
