@@ -37,6 +37,13 @@ public class Main {
                     }
 
                     System.out.print("Enter weight in grams: ");
+                    
+                    if (!sc.hasNextDouble()) {
+                        System.out.println("Invalid input. Weight must be a number.");
+                        sc.nextLine();
+                        break;
+                    }
+                    
                     double weight = sc.nextDouble();
                     sc.nextLine();
 
@@ -79,6 +86,12 @@ public class Main {
                 case 6:
                     System.out.print("Enter food name to search: ");
                     String searchName = sc.nextLine();
+
+                    if (searchName.trim().isEmpty()) {
+                        System.out.println("Search name cannot be empty.");
+                        break;
+                    }
+                    
                     foodQueue.searchByName(searchName);
                     break;
 
