@@ -16,15 +16,14 @@ public class Main {
             System.out.println("6. Search food item by name");
             System.out.println("0. Exit");
             System.out.print("Enter your choice: ");
-
-            if (sc.hasNextInt()) {
-                choice = sc.nextInt();
-                sc.nextLine();
-            } else {
+            
+            while (!sc.hasNextInt()) {
                 System.out.println("Invalid input. Please enter a number.");
                 sc.nextLine();
-                choice = -1;
+                System.out.print("Enter your choice: ");
             }
+            choice = sc.nextInt();
+            sc.nextLine();
 
             switch (choice) {
                 case 1:
@@ -37,13 +36,12 @@ public class Main {
                     }
 
                     System.out.print("Enter weight in grams: ");
-                    
-                    if (!sc.hasNextDouble()) {
+                    while (!sc.hasNextDouble()) {
                         System.out.println("Invalid input. Weight must be a number.");
                         sc.nextLine();
-                        break;
+                        System.out.print("Enter weight in grams: ");
                     }
-                    
+
                     double weight = sc.nextDouble();
                     sc.nextLine();
 
