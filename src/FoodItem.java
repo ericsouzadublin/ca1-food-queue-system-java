@@ -1,14 +1,17 @@
+
+import java.time.LocalTime;
+
 public class FoodItem {
     String name;
     double weight;
     String bestBeforeDate;
     String timeAdded;
 
-    public FoodItem(String name, double weight, String bestBeforeDate, String timeAdded) {
+    public FoodItem(String name, double weight, String bestBeforeDate) {
         this.name = name;
         this.weight = weight;
         this.bestBeforeDate = bestBeforeDate;
-        this.timeAdded = timeAdded;
+        this.timeAdded = LocalTime.now().toString();
     }
 
     public void displayItem() {

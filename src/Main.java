@@ -53,10 +53,7 @@ public class Main {
                     System.out.print("Enter best before date: ");
                     String bestBeforeDate = sc.nextLine();
 
-                    System.out.print("Enter time added: ");
-                    String timeAdded = sc.nextLine();
-
-                    FoodItem newItem = new FoodItem(name, weight, bestBeforeDate, timeAdded);
+                    FoodItem newItem = new FoodItem(name, weight, bestBeforeDate);
                     foodQueue.enqueue(newItem);
                     break;
 
