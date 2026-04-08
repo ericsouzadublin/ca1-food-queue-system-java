@@ -30,9 +30,11 @@ public class Main {
                     System.out.print("Enter food name: ");
                     String name = sc.nextLine();
 
-                    if (name.trim().isEmpty()) {
-                        System.out.println("Food name cannot be empty.");
-                        break;
+                    while (name.trim().length() < 3 
+                        || !name.matches("[a-zA-Z ]+") 
+                        || !name.matches(".*[aeiouAEIOU].*")) {
+                        System.out.println("Invalid food name. Please enter a valid name: ");
+                        name = sc.nextLine();
                     }
 
                     System.out.print("Enter weight in grams: ");
