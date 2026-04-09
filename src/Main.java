@@ -1,4 +1,7 @@
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class Main {
     public static void main(String[] args) {
@@ -52,8 +55,21 @@ public class Main {
                         break;
                     }
 
-                    System.out.print("Enter best before date: ");
+                    System.out.print("Enter best before date (dd/MM/yyyy): ");
                     String bestBeforeDate = sc.nextLine();
+
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+                    while (true) {
+                        try {
+                            LocalDate.parse(bestBeforeDate, formatter);
+                            break;
+                        } catch (DateTimeParseException e) {
+                            System.out.println("Invalid date. Use format dd/MM/yyyy.");
+                            System.out.print("Enter best before date: ");
+                            bestBeforeDate = sc.nextLine();
+                        }
+                    }
 
                     FoodItem newItem = new FoodItem(name, weight, bestBeforeDate);
                     foodQueue.enqueue(newItem);
