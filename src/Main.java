@@ -41,18 +41,34 @@ public class Main {
                     }
 
                     System.out.print("Enter weight in grams: ");
-                    while (!sc.hasNextDouble()) {
-                        System.out.println("Invalid input. Weight must be a number.");
-                        sc.nextLine();
+                        while (!sc.hasNextInt()) {
+                            System.out.println("Invalid input. Weight must be a whole number.");
+                            sc.nextLine();
+                            System.out.print("Enter weight in grams: ");
+                }
+                    
+                    int weight = sc.nextInt();
+                    sc.nextLine();
+                    
+                    System.out.print("Enter weight in grams: ");
+                    while (weight <= 0) {
+                        System.out.println("Invalid weight. Enter grams greater than 0.");
                         System.out.print("Enter weight in grams: ");
+                        
+                        while (!sc.hasNextInt()) {
+                            System.out.println("Invalid input. Weight must be a whole number.");
+                            sc.nextLine();
+                            System.out.print("Enter weight in grams: ");
+                        }
+
+                        weight = sc.nextInt();
+                        sc.nextLine();
                     }
 
-                    double weight = sc.nextDouble();
-                    sc.nextLine();
-
-                    if (weight <= 0) {
-                        System.out.println("Weight must be greater than 0.");
-                        break;
+                    while (weight <= 0) {
+                        System.out.println("Invalid weight. Enter grams greater than 0.");
+                        System.out.print("Enter weight: ");
+                        weight = sc.nextInt();
                     }
 
                     System.out.print("Enter best before date (dd/MM/yyyy): ");
