@@ -68,13 +68,28 @@ public class Main {
 
                     while (true) {
                         try {
-                            LocalDate.parse(bestBeforeDate, formatter);
-                            break;
+                            LocalDate date = LocalDate.parse(bestBeforeDate, formatter);
+
+                            LocalDate today = LocalDate.now();
+                            LocalDate maxDate = today.plusYears(5);
+
+                            if (date.isBefore(today)) {
+                                System.out.println("Date cannot be in the past.");
+                            } else if (date.isAfter(maxDate)) {
+                                System.out.println("Date cannot be more than 1 year in the future.");
+                            } else {
+                                break;
+                            }
+
                         } catch (DateTimeParseException e) {
                             System.out.println("Invalid date. Use format dd/MM/yyyy.");
                             System.out.print("Enter best before date: ");
                             bestBeforeDate = sc.nextLine();
                         }
+                        
+                        System.out.print("Enter best before date (dd/MM/yyyy): ");
+                        bestBeforeDate = sc.nextLine();
+                            
                     }
 
                     FoodItem newItem = new FoodItem(name, weight, bestBeforeDate);
