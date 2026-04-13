@@ -71,12 +71,12 @@ public class Main {
                             LocalDate date = LocalDate.parse(bestBeforeDate, formatter);
 
                             LocalDate today = LocalDate.now();
-                            LocalDate maxDate = today.plusYears(5);
+                            LocalDate maxDate = today.plusWeeks(2);
 
                             if (date.isBefore(today)) {
                                 System.out.println("Date cannot be in the past.");
                             } else if (date.isAfter(maxDate)) {
-                                System.out.println("Date cannot be more than 1 year in the future.");
+                                System.out.println("Date cannot be more than 2 weeks in the future.");
                             } else {
                                 break;
                             }
