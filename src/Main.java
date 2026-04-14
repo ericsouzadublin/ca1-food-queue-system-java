@@ -65,17 +65,18 @@ public class Main {
                     String bestBeforeDate = sc.nextLine();
 
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    LocalDate bestBefore;
 
                     while (true) {
                         try {
-                            LocalDate date = LocalDate.parse(bestBeforeDate, formatter);
+                            bestBefore = LocalDate.parse(bestBeforeDate, formatter);
 
                             LocalDate today = LocalDate.now();
                             LocalDate maxDate = today.plusWeeks(2);
 
-                            if (date.isBefore(today)) {
+                            if (bestBefore.isBefore(today)) {
                                 System.out.println("Date cannot be in the past.");
-                            } else if (date.isAfter(maxDate)) {
+                            } else if (bestBefore.isAfter(maxDate)) {
                                 System.out.println("Date cannot be more than 2 weeks in the future.");
                             } else {
                                 break;
@@ -83,8 +84,6 @@ public class Main {
 
                         } catch (DateTimeParseException e) {
                             System.out.println("Invalid date. Use format dd/MM/yyyy.");
-                            System.out.print("Enter best before date: ");
-                            bestBeforeDate = sc.nextLine();
                         }
                         
                         System.out.print("Enter best before date (dd/MM/yyyy): ");
@@ -92,7 +91,7 @@ public class Main {
                             
                     }
 
-                    FoodItem newItem = new FoodItem(name, weight, bestBeforeDate);
+                    FoodItem newItem = new FoodItem(name, weight, bestBefore);
                     foodQueue.enqueue(newItem);
                     break;
 
