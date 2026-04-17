@@ -45,18 +45,46 @@ public class FoodQueue {
         return item;
     }
 
-    public void displayQueue() {
+    public FoodItem removeLast() {
         if (isEmpty()) {
             System.out.println("Queue is empty.");
+            return null;
+        }
+
+        FoodItem item = queue[rear];
+        queue[rear] = null;
+        rear = (rear - 1 + capacity) % capacity;
+        size--;
+
+        if (size == 0) {
+            front = 0;
+            rear = -1;
+        }
+
+        return item;
+    }
+
+    public void displayQueue() {
+        if (isEmpty()) {
+            System.out.println("\nFood storage is empty.\n");
             return;
         }
 
-        for (int i = 0; i < size; i++) {
-            int index = (front + i) % capacity;
-            queue[index].displayItem();
-        }
-    }
+        System.out.println();
+        System.out.println("---------- FOOD STORAGE (Rear to Front) ----------");
+        System.out.println();
 
+        for (int i = 0; i < size; i++) {
+            int index = (rear - i + capacity) % capacity;
+
+            queue[index].displayItem();
+            System.out.println(); // espaço entre itens
+        }
+
+        System.out.println("-------------------------------------------------");
+        System.out.println();
+    }
+    
     public void displayFrontItem() {
         if (isEmpty()) {
             System.out.println("Queue is empty.");

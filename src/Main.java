@@ -10,13 +10,13 @@ public class Main {
         int choice;
 
         do {
-            System.out.println("\n===== FOOD QUEUE SYSTEM =====");
             System.out.println("1. Add food item");
-            System.out.println("2. Remove food item");
-            System.out.println("3. Display all food items");
-            System.out.println("4. Display front food item");
-            System.out.println("5. Display queue size");
-            System.out.println("6. Search food item by name");
+            System.out.println("2. Remove front food item (FIFO)");
+            System.out.println("3. Remove rear food item (LIFO)");
+            System.out.println("4. Display all food items");
+            System.out.println("5. Display front food item");
+            System.out.println("6. Display queue size");
+            System.out.println("7. Search food item by name");
             System.out.println("0. Exit");
             System.out.print("Enter your choice: ");
             
@@ -98,25 +98,33 @@ public class Main {
                 case 2:
                     FoodItem removedItem = foodQueue.dequeue();
                     if (removedItem != null) {
-                        System.out.println("Removed item:");
+                        System.out.println("Front item removed: ");
                         removedItem.displayItem();
                     }
                     break;
-
+                    
                 case 3:
-                    foodQueue.displayQueue();
+                    FoodItem lastRemovedItem = foodQueue.removeLast();
+                    if (lastRemovedItem != null) {
+                        System.out.println("Rear item removed: ");
+                        lastRemovedItem.displayItem();
+                    }
                     break;
 
                 case 4:
+                    foodQueue.displayQueue();
+                    break;
+
+                case 5:
                     System.out.println("Front item:");
                     foodQueue.displayFrontItem();
                     break;
 
-                case 5:
+                case 6:
                     System.out.println("Current queue size: " + foodQueue.getSize());
                     break;
 
-                case 6:
+                case 7:
                     System.out.print("Enter food name to search: ");
                     String searchName = sc.nextLine();
 

@@ -4,6 +4,10 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class FoodItem extends Item {
+    
+    private static final DateTimeFormatter FORMATTER =
+            DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    
     double weight;
     LocalDate bestBeforeDate;
     String timeAdded;
@@ -18,8 +22,8 @@ public class FoodItem extends Item {
     public void displayItem() {
         System.out.println("Name: " + name);
         System.out.println("Weight: " + weight + "g");
-        System.out.println("Best Before Date: " + bestBeforeDate);
+        System.out.println("Best Before Date: " + bestBeforeDate.format(FORMATTER));
         System.out.println("Time Added: " + timeAdded);
         System.out.println("-----------------------------");
     }
-}
+} 
