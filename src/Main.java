@@ -30,14 +30,62 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    System.out.print("Enter food name: ");
-                    String name = sc.nextLine();
+                    System.out.println("Select food item:");
+                    System.out.println("1. Burger");
+                    System.out.println("2. Pizza");
+                    System.out.println("3. Fries");
+                    System.out.println("4. Sandwich");
+                    System.out.println("5. Hotdog");
+                    System.out.print("Enter your choice: ");
 
-                    while (name.trim().length() < 3 
-                        || !name.matches("[a-zA-Z ]+") 
-                        || !name.matches(".*[aeiouAEIOU].*")) {
-                        System.out.println("Invalid food name. Please enter a valid name: ");
-                        name = sc.nextLine();
+                    int foodChoice;
+
+                    while (!sc.hasNextInt()) {
+                        System.out.println("Invalid input. Please enter a number.");
+                        sc.nextLine();
+                        System.out.print("Enter your choice: ");
+                    }
+
+                    while (true) {
+                        if (!sc.hasNextInt()) {
+                            System.out.println("Invalid input. Please enter a number.");
+                            sc.nextLine();
+                            System.out.print("Enter your choice: ");
+                            continue;
+                        }
+
+                        foodChoice = sc.nextInt();
+                        sc.nextLine();
+
+                        if (foodChoice >= 1 && foodChoice <= 5) {
+                            break;
+                        }
+
+                        System.out.println("Invalid choice. Please select a number between 1 and 5.");
+                        System.out.print("Enter your choice: ");
+                    }
+
+                    String name = "";
+
+                    switch (foodChoice) {
+                        case 1:
+                             name = "Burger";
+                             break;
+                        case 2:
+                            name = "Pizza";
+                            break;
+                        case 3:
+                            name = "Fries";
+                            break;
+                        case 4:
+                            name = "Sandwich";
+                            break;
+                        case 5:
+                            name = "Hotdog";
+                            break;
+                        default:
+                            System.out.println("Invalid choice. Item not added.");
+                            break;
                     }
 
                     int weight;
