@@ -9,6 +9,7 @@ public class Main {
         FoodQueue foodQueue = new FoodQueue(8);
         int choice;
 
+        // Main menu loop
         do {
             System.out.println("1. Add food item");
             System.out.println("2. Remove front food item (FIFO)");
@@ -20,6 +21,7 @@ public class Main {
             System.out.println("0. Exit");
             System.out.print("Enter your choice: ");
             
+            // Validates menu input to make sure it is a number
             while (!sc.hasNextInt()) {
                 System.out.println("Invalid input. Please enter a number.");
                 sc.nextLine();
@@ -30,6 +32,7 @@ public class Main {
 
             switch (choice) {
                 case 1:
+                    // Lets the user choose one of the 5 allowed food items
                     System.out.println("Select food item:");
                     System.out.println("1. Burger");
                     System.out.println("2. Pizza");
@@ -46,6 +49,7 @@ public class Main {
                         System.out.print("Enter your choice: ");
                     }
 
+                    // Repeats until the user enters a valid option from 1 to 5
                     while (true) {
                         if (!sc.hasNextInt()) {
                             System.out.println("Invalid input. Please enter a number.");
@@ -67,6 +71,7 @@ public class Main {
 
                     String name = "";
 
+                    // Converts the numeric choice into the food name
                     switch (foodChoice) {
                         case 1:
                              name = "Burger";
@@ -90,6 +95,7 @@ public class Main {
 
                     int weight;
 
+                    // Validates weight input
                     while (true) {
                         System.out.print("Enter weight in grams: ");
 
@@ -115,6 +121,7 @@ public class Main {
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                     LocalDate bestBefore;
 
+                    // Validates the date format and checks if the date is within 2 weeks
                     while (true) {
                         try {
                             bestBefore = LocalDate.parse(bestBeforeDate, formatter);
@@ -144,35 +151,68 @@ public class Main {
                     break;
 
                 case 2:
+                    // Removes the front item using FIFO logic
                     FoodItem removedItem = foodQueue.dequeue();
                     if (removedItem != null) {
-                        System.out.println("Front item removed: ");
+                        System.out.println();
+                        System.out.println("----------- FRONT ITEM REMOVED (FIFO) -----------");
+                        System.out.println();
+
                         removedItem.displayItem();
+
+                        System.out.println("-------------------------------------------------");
+                        System.out.println();
                     }
                     break;
                     
                 case 3:
+                    // Removes the rear item using LIFO logic
                     FoodItem lastRemovedItem = foodQueue.removeLast();
                     if (lastRemovedItem != null) {
-                        System.out.println("Rear item removed: ");
+                        System.out.println();
+                        System.out.println("------------ REAR ITEM REMOVED (LIFO) -----------");
+                        System.out.println();
+
                         lastRemovedItem.displayItem();
+
+                        System.out.println("-------------------------------------------------");
+                        System.out.println();
                     }
                     break;
 
                 case 4:
+                    // Displays all items currently in the food storage
                     foodQueue.displayQueue();
                     break;
 
                 case 5:
-                    System.out.println("Front item:");
+                    // Displays the item at the front of the queue
+                    System.out.println();
+                    System.out.println("---------- FRONT ITEM (PEEK) ----------");
+                    System.out.println();
+
                     foodQueue.displayFrontItem();
+
+                    System.out.println();
+                    System.out.println("---------------------------------------");
+                    System.out.println();
                     break;
 
                 case 6:
+                    // Displays the current number of items in the queue
+                    System.out.println();
+                    System.out.println("--------------- QUEUE SIZE ---------------");
+                    System.out.println();
+
                     System.out.println("Current queue size: " + foodQueue.getSize());
+
+                    System.out.println();
+                    System.out.println("------------------------------------------");
+                    System.out.println();
                     break;
 
                 case 7:
+                    // Searches for food items by name
                     System.out.print("Enter food name to search: ");
                     String searchName = sc.nextLine();
 
@@ -185,6 +225,7 @@ public class Main {
                     break;
 
                 case 0:
+                    // Ends the program
                     System.out.println("Exiting system...");
                     break;
 
